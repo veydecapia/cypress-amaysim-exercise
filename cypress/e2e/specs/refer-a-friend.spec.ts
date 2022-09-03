@@ -10,7 +10,7 @@ describe('Refer a friend', () => {
         accountLoginPage.submitLoginForm('0466134574','AWqasde321')
     });
     
-    xit('should navigate to my account dashboard page', () => {
+    it('should navigate to my account dashboard page', () => {
         //Act
         cy.visit('/my-account/my-amaysim/dashboards')
         
@@ -19,7 +19,7 @@ describe('Refer a friend', () => {
         myAccountPage.referAFriendLnk.should('be.visible')
     });
 
-    xit('should navigate to refer a friend page', () => {
+    it('should navigate to refer a friend page', () => {
         //Act
         cy.visit('/my-account/my-amaysim/refer_friends')
 
