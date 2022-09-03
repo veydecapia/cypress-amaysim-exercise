@@ -1,0 +1,15 @@
+{
+  "name": "cypress-amaysim-exercise",
+  "version": "1.0.0",
+  "description": "My Technical Automation Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harvey Decapia",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.7.0",
+    "typescript": "^4.8.2"
+  }
+}
