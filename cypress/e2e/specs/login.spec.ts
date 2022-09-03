@@ -29,7 +29,7 @@ describe('Login', () => {
         cy.contains('Welcome back!').should('be.visible')
     });
 
-    it('should go to dashboards', () => {
+    it('should navigate to my account dashboard page', () => {
         //Act
         cy.visit('/my-account/my-amaysim/dashboards')
 
