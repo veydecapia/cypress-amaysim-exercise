@@ -1,7 +1,7 @@
 import homePage from "./home.page"
 
 
-class MyAccount{
+class myAccountPage{
     visit(){
 
     }
@@ -11,7 +11,7 @@ class MyAccount{
     }
 
     get managePlanLnk(){
-        return this.serviceTileMobileSection.contains('Manage plan')
+        return cy.contains('Manage plan')
     }
 
     get referAFriendLnk(){
@@ -20,4 +20,4 @@ class MyAccount{
 
 }
 
-export default new MyAccount()
+export default new myAccountPage()
