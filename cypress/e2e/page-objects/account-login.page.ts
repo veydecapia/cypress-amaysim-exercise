@@ -27,9 +27,12 @@ class LoginPage{
         username: string,
         password: string
     ) => {
-        this.usernameTxtbox.type(username)
-        this.passwordTxtbox.type(password)
-        this.loginBtn.click()
+        cy.session([username, password], () => {
+            cy.visit('https://accounts.amaysim.com.au/identity/login')
+            this.usernameTxtbox.type(username)
+            this.passwordTxtbox.type(password)
+            this.loginBtn.click()
+        })
     }
 
 }
