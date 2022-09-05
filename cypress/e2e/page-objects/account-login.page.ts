@@ -1,3 +1,4 @@
+import myAccountPage from "./my-account.page"
 
 
 class LoginPage{
@@ -32,8 +33,30 @@ class LoginPage{
             this.usernameTxtbox.type(username)
             this.passwordTxtbox.type(password)
             this.loginBtn.click()
+            this.goToDashboards() // For caching purposes
         })
     }
+
+
+    /**
+     * @description
+     * Goes to dashboard after doing a successful login
+     * Pre-condition: Need a valid login
+     */
+    goToDashboards = () => {
+        cy.url().should('contain', '/services')
+        myAccountPage.serviceTileMobileSection
+                .should('be.visible') 
+
+        myAccountPage.managePlanLnk.realClick()
+        cy.url().should('contain', '/dashboards')
+    }
+
+
+
+
+
+    
 
 }
 
