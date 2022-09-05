@@ -30,3 +30,4 @@ cypress/screenshots
 
 # others
 actions.json
+cypress/downloads/
