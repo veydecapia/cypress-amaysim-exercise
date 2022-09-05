@@ -5,67 +5,76 @@ import referAFriendPage from "../page-objects/refer-a-friend.page";
 
 describe('Refer a friend', () => {
 
-
     beforeEach(() => {
         accountLoginPage.submitLoginForm('0466134574','AWqasde321')
     });
     
-    it('should navigate to my account dashboard page', () => {
+    xit('should navigate to my account dashboard page', () => {
         //Act
-        cy.visit('/my-account/my-amaysim/dashboards')
+        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/dashboards')
         
         //Assert
         cy.url().should('include', 'dashboards')
         myAccountPage.referAFriendLnk.should('be.visible')
     });
 
-    it('should navigate to refer a friend page', () => {
+    xit('should navigate to refer a friend page', () => {
         //Act
-        cy.visit('/my-account/my-amaysim/refer_friends')
+        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
 
         //Assert
         cy.url().should('include','refer_friends')
         cy.contains('refer a friend').should('be.visible')
     });
 
-    it('should refer a friend by sharing referral link - using Copy button', () => {
+    it.only('should refer a friend by sharing referral link - using Copy button', () => {
         //Arrange
-        cy.visit('/my-account/my-amaysim/refer_friends')
+        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
 
-        /**
-         * Wait for the referral link to load
-         * should contain http link to continue
-         */
-        referAFriendPage.referralLinkTxtbox
-            .find('p') // Go to the element p tag
-            .invoke('text')
-            .should('contain', 'http')
+        referAFriendPage.waitForReferralLinkToLoad()
 
         //Act
-        referAFriendPage.copyBtn.realClick()
+        referAFriendPage.copyBtn
+                .realClick() // Use realclick events instead of click
                 .should('have.text', 'Copied!')
 
         //Assert: Verify clipboard value
-        // Get referral link text value then compare to clipboard value
-        referAFriendPage.referralLinkTxtbox.find('p').invoke('text')
-            .then((referralText) => {
-                cy.window().its('navigator.clipboard').invoke('readText')
-                    .should((clipboardText) => {
-                        expect(referralText).to.eql(referralText)
-                    })
-            })
-
-        // //Get clipboard value then compare to referral link string value
-        // cy.window().then((win) => {
-        //     win.navigator.clipboard.readText().then((clipboardText) => {
-        //         referAFriendPage.referralLinkTxtbox
-        //             .find('p').invoke('text').should((referralText) => {
-        //                 expect(clipboardText).to.not.contain(referralText)
-        //                 cy.log("Referral Text: " + referralText)
-        //             })
-        //     })
-        // })
+        referAFriendPage.verifyClipboardTextIfEqualToReferralLink()
     });
+
+    it('should refer a friend by sharing referral link - clicking the link to copy', () => {
+        //Arrange
+        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+        referAFriendPage.waitForReferralLinkToLoad()
+
+        //Act
+        referAFriendPage.referralLinkTxtbox.realClick()
+                        .should('have.text', 'Copied!')
+
+        //Assert: Verify clipboard value
+        referAFriendPage.verifyClipboardTextIfEqualToReferralLink()
+    });
+
+    xit('should refer a friend by sharing referral link - Email', () => {
+        //Arrange
+        //TODO: Move this path file to a fixture
+        //TODO: "prod" should be on a config file
+        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+
+        //Act
+        referAFriendPage.emailTxtbox.clear().type('harveydecapia@gmail.com')
+        referAFriendPage.emailBodyTextArea.clear().type('This is a test')
+        referAFriendPage.shareBtn.click()
+
+        //Assert
+        referAFriendPage.referAFriendComponent
+            .contains('Thanks for sharing the big love')
+            .should('be.visible')
+
+        referAFriendPage.shareAgainBtn.should('be.visible')
+    });
+
+    //TODO: Add reminder it block
 
     
 });
