@@ -12,7 +12,7 @@ describe('Refer a friend', () => {
     
     it('should navigate to my account dashboard page', () => {
         //Act
-        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/dashboards')
+        cy.visit('/my-account/my-amaysim/dashboards')
         
         //Assert
         cy.url().should('include', 'dashboards')
@@ -21,7 +21,7 @@ describe('Refer a friend', () => {
 
     it('should navigate to refer a friend page', () => {
         //Act
-        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+        cy.visit('/my-account/my-amaysim/refer_friends')
 
         //Assert
         cy.url().should('include','refer_friends')
@@ -30,13 +30,13 @@ describe('Refer a friend', () => {
 
     it.only('should refer a friend by sharing referral link - using Copy button', () => {
         //Arrange
-        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+        cy.visit('/my-account/my-amaysim/refer_friends')
 
         referAFriendPage.waitForReferralLinkToLoad()
 
         //Act
         referAFriendPage.copyBtn
-                .realClick() // Use realclick events instead of click
+                .realClick() // Use realclick to handle copy
                 .should('have.text', 'Copied!')
 
         //Assert: Verify clipboard value
@@ -45,7 +45,7 @@ describe('Refer a friend', () => {
 
     it('should refer a friend by sharing referral link - clicking the link to copy', () => {
         //Arrange
-        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+        cy.visit('/my-account/my-amaysim/refer_friends')
         referAFriendPage.waitForReferralLinkToLoad()
 
         //Act
@@ -59,8 +59,7 @@ describe('Refer a friend', () => {
     it('should refer a friend by sharing referral link - Email', () => {
         //Arrange
         //TODO: Move this path file to a fixture
-        //TODO: "prod" should be on a config file
-        cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
+        cy.visit('/my-account/my-amaysim/refer_friends')
 
         //Act
         referAFriendPage.emailTxtbox.clear().type('harveydecapia@gmail.com')
