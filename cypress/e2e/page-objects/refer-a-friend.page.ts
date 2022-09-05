@@ -69,23 +69,11 @@ class ReferAFriendPage{
     verifyClipboardTextIfEqualToReferralLink = () => {
         this.waitForReferralLinkToLoad()
 
-        // !Use clipboardy 
-        // this.referralLinkTxtboxTextValue
-        //     .should((referralText) => {
-        //         cy.log("Referral Text: " + referralText)
-        //         expect(referralText).to.contain(cy.getClipboard())
-        //     })
-
-        // !Cannot set property message of [object DOMException] which has only a getter
         this.referralLinkTxtboxTextValue
-            //Get the correct index for simplicity
             .then((referralText) => {
-                cy.log("Referral Text: " + referralText)
-
                 cy.window().its('navigator.clipboard').invoke('readText')
                     .should((clipboardText) => {
-                        cy.log("Clipboard Text: " + clipboardText)
-                        expect(referralText).to.contain(clipboardText)
+                        expect(referralText).to.include(clipboardText)
                     })
             })
 

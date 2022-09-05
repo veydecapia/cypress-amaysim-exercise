@@ -28,7 +28,7 @@ describe('Refer a friend', () => {
         cy.contains('refer a friend').should('be.visible')
     });
 
-    it.only('should refer a friend by sharing referral link - using Copy button', () => {
+    it('should refer a friend by sharing referral link - using Copy button', () => {
         //Arrange
         cy.visit('/my-account/my-amaysim/refer_friends')
 
