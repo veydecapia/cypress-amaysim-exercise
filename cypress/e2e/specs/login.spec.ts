@@ -29,7 +29,9 @@ describe('Login', () => {
         cy.contains('Welcome back!').should('be.visible')
     });
 
-    it('should navigate to my account dashboard page', () => {
+    it('should navigate to my account dashboard page', {
+        retries: 2 // Handle flaky network level issue
+    }, () => {
         //Act
         cy.visit('/my-account/my-amaysim/dashboards')
 
