@@ -1,4 +1,5 @@
 import myAccountPage from "./my-account.page"
+import * as env from '../../../cypress.env.json'
 
 
 class LoginPage{
@@ -29,7 +30,7 @@ class LoginPage{
         password: string
     ) => {
         cy.session([username, password], () => {
-            cy.visit('https://accounts.amaysim.com.au/identity/login')
+            cy.visit(Cypress.env('loginUrl'))
             this.usernameTxtbox.type(username)
             this.passwordTxtbox.type(password)
             this.loginBtn.click()

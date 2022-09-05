@@ -4,7 +4,9 @@
   "description": "My Technical Automation Task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "ENVIRONMENT=prod npx cypress open",
+    "dev": "ENVIRONMENT=dev npx cypress open"
   },
   "author": "Harvey Decapia",
   "license": "ISC",

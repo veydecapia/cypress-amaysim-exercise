@@ -11,7 +11,7 @@ describe('Login', () => {
 
     it('should display login screen', () => {
         //Act
-        cy.visit('https://accounts.amaysim.com.au/identity/login')
+        cy.visit(Cypress.env('loginUrl'))
 
         //Assert
         cy.url().should('contain', '/login')

@@ -1,15 +1,6 @@
 import { defineConfig } from 'cypress'
-import clipboard from 'clipboardy';
-
 
 export default defineConfig({
-  // setupNodeEvents(on, config) {
-  //   on('task', {
-  //     getClipboard () {
-  //       return clipboard.readSync();
-  //     }
-  //   })
-  // },
   e2e: {
     specPattern: 'cypress/e2e/specs/*.spec.{js,jsx,ts,tsx}',
     chromeWebSecurity: false,
@@ -17,6 +8,28 @@ export default defineConfig({
     pageLoadTimeout: 120000,
     experimentalSessionAndOrigin: true,
 
+    setupNodeEvents(on, config) {
+      switch (process.env.ENVIRONMENT) {
+        case 'prod':
+          config.baseUrl = config.env.prod.baseUrl
+          config.env.loginUrl = config.env.prod.accountsLoginUrl
+          break;
+        case 'dev':
+          config.baseUrl = config.env.dev.baseUrl
+          break;
+        case 'test':
+          config.baseUrl = config.env.test.baseUrl
+          break;
+        case 'local':
+          config.baseUrl = config.env.local.baseUrl
+          break;
+        default:
+          config.baseUrl = config.env.local.baseUrl
+          break;
+      }
+
+      return config
+    },
 
   }
 })
