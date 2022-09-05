@@ -1,7 +1,7 @@
-import { data } from "cypress/types/jquery";
 import accountLoginPage from "../page-objects/account-login.page";
 import myAccountPage from "../page-objects/my-account.page";
 import referAFriendPage from "../page-objects/refer-a-friend.page";
+import data from '../../fixtures/referafriend.json'
 
 
 describe('Refer a friend', () => {
@@ -59,15 +59,11 @@ describe('Refer a friend', () => {
 
     it.only('should refer a friend by sharing referral link - Email', () => {
         //Arrange
-        //TODO: Move this path file to a fixture
         cy.visit('/my-account/my-amaysim/refer_friends')
 
         //Act
-        cy.fixture('referafriend').then((data) => {
-            referAFriendPage.emailTxtbox.clear().type(data.email)
-            referAFriendPage.emailBodyTextArea.clear().type(data.body)
-        })
-        
+        referAFriendPage.emailTxtbox.clear().type(data.email)
+        referAFriendPage.emailBodyTextArea.clear().type(data.body)
         referAFriendPage.shareBtn.click()
 
         //Assert
