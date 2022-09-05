@@ -6,10 +6,11 @@ import referAFriendPage from "../page-objects/refer-a-friend.page";
 describe('Refer a friend', () => {
 
     beforeEach(() => {
-        accountLoginPage.submitLoginForm('0466134574','AWqasde321')
+        accountLoginPage.submitLoginForm(Cypress.env('USERNAME'),
+                                            Cypress.env('PASSWORD'))
     });
     
-    xit('should navigate to my account dashboard page', () => {
+    it('should navigate to my account dashboard page', () => {
         //Act
         cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/dashboards')
         
@@ -18,7 +19,7 @@ describe('Refer a friend', () => {
         myAccountPage.referAFriendLnk.should('be.visible')
     });
 
-    xit('should navigate to refer a friend page', () => {
+    it('should navigate to refer a friend page', () => {
         //Act
         cy.visit(Cypress.env("prod").baseUrl + '/my-account/my-amaysim/refer_friends')
 
@@ -55,7 +56,7 @@ describe('Refer a friend', () => {
         referAFriendPage.verifyClipboardTextIfEqualToReferralLink()
     });
 
-    xit('should refer a friend by sharing referral link - Email', () => {
+    it('should refer a friend by sharing referral link - Email', () => {
         //Arrange
         //TODO: Move this path file to a fixture
         //TODO: "prod" should be on a config file

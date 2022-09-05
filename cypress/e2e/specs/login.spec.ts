@@ -6,7 +6,8 @@ import dashboardPage from "../page-objects/dashboard.page";
 describe('Login', () => {
 
     beforeEach(() => {
-        accountLoginPage.submitLoginForm('0466134574','AWqasde321')
+        accountLoginPage.submitLoginForm(Cypress.env('USERNAME'),
+                                            Cypress.env('PASSWORD'))
     });
 
     it('should display login screen', () => {
