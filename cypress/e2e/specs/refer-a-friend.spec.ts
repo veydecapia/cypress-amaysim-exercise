@@ -72,7 +72,12 @@ describe('Refer a friend', () => {
         referAFriendPage.shareAgainBtn.should('be.visible')
     });
 
-    //TODO: Add reminder it block
+    /**
+     * * 1. Verify Check/Uncheck of reminder in 3 days
+     * * 2. Click Terms link and verify download
+     * * 3. Verify Share Again button working
+     * *
+     */
 
     
 });
