@@ -1,7 +1,7 @@
 import accountLoginPage from "../page-objects/account-login.page";
 import myAccountPage from "../page-objects/my-account.page";
 import referAFriendPage from "../page-objects/refer-a-friend.page";
-import data from '../../fixtures/referafriend.json'
+
 
 
 describe('Refer a friend', () => {
@@ -57,14 +57,12 @@ describe('Refer a friend', () => {
         referAFriendPage.verifyClipboardTextIfEqualToReferralLink()
     });
 
-    it.only('should refer a friend by sharing referral link - Email', () => {
+    it('should refer a friend by sharing referral link - Email', () => {
         //Arrange
         cy.visit('/my-account/my-amaysim/refer_friends')
 
         //Act
-        referAFriendPage.emailTxtbox.clear().type(data.email)
-        referAFriendPage.emailBodyTextArea.clear().type(data.body)
-        referAFriendPage.shareBtn.click()
+        referAFriendPage.referAFriendThruEmail()
 
         //Assert
         referAFriendPage.referAFriendComponent

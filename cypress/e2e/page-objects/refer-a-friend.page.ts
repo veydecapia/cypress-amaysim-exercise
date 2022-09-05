@@ -1,4 +1,4 @@
-
+import data from '../../fixtures/referafriend.json'
 
 class ReferAFriendPage{
 
@@ -88,6 +88,27 @@ class ReferAFriendPage{
         //                 })
         //         })
         // })
+    }
+
+
+    /**
+     * @description
+     * Types and goes through all the emails
+     * Then enters the body of the email
+     * Refer to referafriend.json file under fixtures folder
+     */
+    referAFriendThruEmail = () => {
+        this.emailTxtbox.clear()
+
+        //Type emails with comma separated value
+        data.email.forEach((element,index) => {
+            this.emailTxtbox.type(element)
+            if(index < data.email.length - 1)
+            this.emailTxtbox.type(',')
+        });
+
+        this.emailBodyTextArea.clear().type(data.body)
+        this.shareBtn.click()
     }
     
 }

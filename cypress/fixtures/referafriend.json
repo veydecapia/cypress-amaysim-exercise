@@ -1,4 +1,9 @@
 {
-    "email": "harveydecapia@gmail.com",
-    "body": "Hey Harvey! This is just a test."
+    "email": [
+        "harveydecapia@gmail.com",
+        "test1@gmail.com",
+        "test2@gmail.com",
+        "test3@gmail.com"
+    ],
+    "body": "Hey it's Harvey! This is just a test."
 }
