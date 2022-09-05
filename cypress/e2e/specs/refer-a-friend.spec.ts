@@ -1,3 +1,4 @@
+import { data } from "cypress/types/jquery";
 import accountLoginPage from "../page-objects/account-login.page";
 import myAccountPage from "../page-objects/my-account.page";
 import referAFriendPage from "../page-objects/refer-a-friend.page";
@@ -56,14 +57,17 @@ describe('Refer a friend', () => {
         referAFriendPage.verifyClipboardTextIfEqualToReferralLink()
     });
 
-    it('should refer a friend by sharing referral link - Email', () => {
+    it.only('should refer a friend by sharing referral link - Email', () => {
         //Arrange
         //TODO: Move this path file to a fixture
         cy.visit('/my-account/my-amaysim/refer_friends')
 
         //Act
-        referAFriendPage.emailTxtbox.clear().type('harveydecapia@gmail.com')
-        referAFriendPage.emailBodyTextArea.clear().type('This is a test')
+        cy.fixture('referafriend').then((data) => {
+            referAFriendPage.emailTxtbox.clear().type(data.email)
+            referAFriendPage.emailBodyTextArea.clear().type(data.body)
+        })
+        
         referAFriendPage.shareBtn.click()
 
         //Assert

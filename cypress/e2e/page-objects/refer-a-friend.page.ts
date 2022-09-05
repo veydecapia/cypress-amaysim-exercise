@@ -73,7 +73,7 @@ class ReferAFriendPage{
             .then((referralText) => {
                 cy.window().its('navigator.clipboard').invoke('readText')
                     .should((clipboardText) => {
-                        expect(referralText).to.include(clipboardText)
+                        expect(referralText).to.contain(clipboardText)
                     })
             })
 
