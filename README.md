@@ -55,6 +55,33 @@ Note: to download the latest version of npm, on the command line, run the follow
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+### Setup of Environment Variable
+
+1. Export the environment variables by naming **CYPRESS_***
+   
+   Note: Any exported environment variables set on the command line or in your CI provider that start with either CYPRESS_ or cypress_ will automatically be parsed by Cypress.
+   
+2. *For MAC:* Open terminal (command line) and open bash_profile.
+   ```sh
+   nano .bash_profile
+   ```
+   
+   Then, key in the username and password, then save.
+   ```sh
+   export CYPRESS_USERNAME=<insert username>
+   export CYPRESS_PASSWORD=<insert password>
+   ```
+   
+   *For Windows:* Click [here](https://www.computerhope.com/issues/ch000549.htm#windows11) for step by step instructions on how to setup environment variables on Windows 11 and [here](https://www.computerhope.com/issues/ch000549.htm#windows10) for Windows 10.
+   
+   Note that variable name should be set to the following with their corresponding values:
+   ```sh
+   CYPRESS_USERNAME
+   CYPRESS_PASSWORD
+   ```
+   
+   
+   <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
